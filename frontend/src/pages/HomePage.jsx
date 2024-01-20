@@ -19,7 +19,7 @@ const HomePage = () => {
         <Image src={LOGO2} alt="Logo" boxSize="150px" />
       </Box>
       <Heading as="h1" size="2xl" textAlign="center" mb={4}>
-        Welcome to Your Chat App
+        Welcome to InteractIQ Chat App
       </Heading>
 
       <Text fontSize="xl" color="gray.600" textAlign="center">
