@@ -14,6 +14,7 @@ import { AddIcon } from "@chakra-ui/icons";
 import { ChatLoading } from ".";
 import { getSender } from "../config/chatLogics";
 import GroupChatModal from "./miscellaneous/GroupChatModal";
+import AvatarImage from "./AvatarImage";
 
 const AllChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -101,12 +102,9 @@ const AllChats = ({ fetchAgain }) => {
                 _hover={{ bg: "#EAEAEA" }}
               >
                 <Flex alignItems="center">
-                  <Avatar
-                    src={chat?.chatPicture}
-                    name={chat?.name}
-                    boxSize="35px"
-                    mr="2"
-                  />
+                <div className="py-2 flex items-center mr-3">
+            <AvatarImage userId={user._id} name={user.name} />
+          </div>
                   <Box>
                     <Text fontSize="md" fontWeight="semibold">
                       {!chat.isGroupChat

@@ -21,8 +21,8 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     phoneNumber,
     password,
-    avatar:
-      "https://www.pngkey.com/png/detail/114-1149847_avatar-unknown-dp.png",
+    // avatar:
+    //   "https://www.pngkey.com/png/detail/114-1149847_avatar-unknown-dp.png",
   });
 
   if (user) {
@@ -30,7 +30,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       phoneNumber: user.phoneNumber,
-      avatar: user.avatar,
+      // avatar: user.avatar,
       token: generateToken(user._id),
     });
   } else {
@@ -48,7 +48,7 @@ const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       phoneNumber: user.phoneNumber,
-      avatar: user.avatar,
+      // avatar: user.avatar,
       token: generateToken(user._id),
     });
   } else {

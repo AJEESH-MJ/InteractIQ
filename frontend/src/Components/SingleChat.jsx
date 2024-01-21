@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Flex,
   FormControl,
@@ -18,11 +17,11 @@ import { FaPaperPlane } from "react-icons/fa";
 import ProfileModel from "./miscellaneous/ProfileModel";
 import UpdateGroupChatModel from "./miscellaneous/UpdateGroupChatModel";
 import axios from "axios";
-import "../Components/styles.css";
 import io from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../animations/typing.json";
 import ScrollableChat from "./ScrollableChat";
+import AvatarImage from "./AvatarImage";
 
 const ENDPOINT = "http://localhost:5000";
 var socket, selectedChatCompare;
@@ -115,6 +114,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     });
   }, [messages]);
 
+
   const sendMessage = async (e) => {
     if ((e.key === "Enter" || e.type === "click") && newMessage) {
       socket.emit("stop typing", selectedChat._id);
@@ -194,11 +194,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               />
               {!selectedChat.isGroupChat ? (
                 <>
-                  <Avatar
-                    src={getSender(user, selectedChat.users).profilePic}
-                    size="sm"
-                    mr={2}
-                  />
+                  <div className="py-2 flex items-center mr-3">
+                    <AvatarImage userId={user._id} name={user.name} />
+                  </div>
                   <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold">
                     {getSender(user, selectedChat.users)}
                   </Text>
@@ -237,12 +235,19 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 size="xl"
                 w={20}
                 h={20}
-                alignSelf="center"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
                 margin="auto"
               />
             ) : (
               <div
-                style={{ height: "470px", overflowY: "auto", width: "full" }}
+                style={{
+                  height: "100%",
+                  overflowY: "auto",
+                  width: "full",
+                  borderRadius: "10px",
+                }}
               >
                 <ScrollableChat messages={messages} />
 

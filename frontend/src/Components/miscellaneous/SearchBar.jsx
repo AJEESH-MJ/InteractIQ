@@ -12,7 +12,6 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  Avatar,
   useToast,
   Drawer,
   DrawerOverlay,
@@ -37,7 +36,8 @@ import { getSender } from "../../config/chatLogics";
 import { BellIcon } from "@chakra-ui/icons";
 // import { Effect } from "react-notification-badge";
 // import NotificationBadge from "react-notification-badge";
-import { LOGO1, LOGO2 } from "../../assets/index";
+import { LOGO2 } from "../../assets/index";
+import AvatarImage from "../AvatarImage";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
@@ -211,14 +211,9 @@ const SearchBar = () => {
         </Menu>
 
         <Menu>
-          <MenuButton marginLeft="15px" marginRight="5px">
-            <Avatar
-              size="sm"
-              name={user.name}
-              src={user.avatar}
-              cursor="pointer"
-            />
-          </MenuButton>
+          <div className="py-2 flex items-center ml-1">
+            <AvatarImage userId={user._id} name={user.name} />
+          </div>
 
           <MenuButton
             as={Button}

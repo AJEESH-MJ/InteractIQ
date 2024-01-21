@@ -6,11 +6,11 @@ const userSchema = new mongoose.Schema(
     name: { type: String, required: true },
     phoneNumber: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    avatar: {
-      type: String,
-      default:
-        "https://www.pngkey.com/png/detail/114-1149847_avatar-unknown-dp.png",
-    },
+    // avatar: {
+    //   type: String,
+    //   default:
+    //     "https://www.pngkey.com/png/detail/114-1149847_avatar-unknown-dp.png",
+    // },
   },
   {
     timestamps: true,

@@ -2,7 +2,6 @@ import { ViewIcon } from "@chakra-ui/icons";
 import {
   Button,
   IconButton,
-  Image,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,9 +13,13 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
+import AvatarImage from "../AvatarImage";
+import { ChatState } from "../../context/chatProvider";
 
-const ProfileModel = ({ user, children }) => {
+const ProfileModel = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { user } = ChatState();
 
   return (
     <>
@@ -43,14 +46,13 @@ const ProfileModel = ({ user, children }) => {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Image
-              src={user.image}
-              alt={user.name}
-              boxSize="150px"
-              borderRadius="full"
-              mx="auto"
-            />
-            <Text fontSize={{ base: "28px", md: "30px" }}>
+            <div className="py-2 flex items-center justify-center text-7xl">
+              <AvatarImage userId={user._id} name={user.name} width={40} height={40} />
+            </div>
+            <Text
+              fontSize={{ base: "18px", md: "20px" }}
+              className="flex justify-center items-center mt-2"
+            >
               Phone Number: {user.phoneNumber}
             </Text>
           </ModalBody>

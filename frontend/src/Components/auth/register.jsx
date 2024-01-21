@@ -5,7 +5,6 @@ import {
   faLock,
   faEye,
   faEyeSlash,
-  faImage,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +16,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [avatar, setAvatar] = useState("");
+  // const [avatar, setAvatar] = useState("");
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
@@ -26,39 +25,39 @@ const Register = () => {
     navigate("/login");
   };
 
-  const postDetails = (avatar) => {
-    setLoading(true);
-    if (avatar === undefined) {
-      toast({
-        title: "Please select an image",
-        status: "warning",
-        duration: 3000,
-        isClosable: true,
-      });
-    } else if (avatar.type !== "image/png" && avatar.type !== "image/jpeg") {
-      const data = new FormData();
-      data.append("file", avatar);
-      data.append("upload_preset", "ybro-chat");
-      data.append("cloud_name", "YBRO");
+  // const postDetails = (avatar) => {
+  //   setLoading(true);
+  //   if (avatar === undefined) {
+  //     toast({
+  //       title: "Please select an image",
+  //       status: "warning",
+  //       duration: 3000,
+  //       isClosable: true,
+  //     });
+  //   } else if (avatar.type !== "image/png" && avatar.type !== "image/jpeg") {
+  //     const data = new FormData();
+  //     data.append("file", avatar);
+  //     data.append("upload_preset", "ybro-chat");
+  //     data.append("cloud_name", "YBRO");
 
-      fetch("https://api.cloudinary.com/v1_1/ybro/image/upload", {
-        method: "post",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setAvatar({ url: data.url.toString(), file: avatar });
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    } else {
-      setLoading(false);
-    }
-  };
+  //     fetch("https://api.cloudinary.com/v1_1/ybro/image/upload", {
+  //       method: "post",
+  //       body: data,
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         // setAvatar({ url: data.url.toString(), file: avatar });
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       })
+  //       .finally(() => {
+  //         setLoading(false);
+  //       });
+  //   } else {
+  //     setLoading(false);
+  //   }
+  // };
 
   const submitHandler = async (e) => {
     setLoading(true);
@@ -81,7 +80,7 @@ const Register = () => {
       };
       const { data } = await axios.post(
         "/api/user/",
-        { name, phoneNumber, password, avatar },
+        { name, phoneNumber, password },
         config
       );
       toast({
@@ -166,7 +165,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="w-full bg-gray-200 h-12 my-4 rounded-full px-4 flex items-center">
+            {/* <div className="w-full bg-gray-200 h-12 my-4 rounded-full px-4 flex items-center">
               <FontAwesomeIcon
                 icon={faImage}
                 className="text-gray-500 text-lg mr-2"
@@ -183,7 +182,7 @@ const Register = () => {
                   {avatar ? avatar.file.name : "Add an Avatar"}
                 </span>
               </label>
-            </div>
+            </div> */}
             <button
               className="w-40 h-10 bg-blue-400 border-none outline-none rounded-full text-white uppercase font-semibold my-4 cursor-pointer transition duration-500 hover:bg-blue-700"
               onClick={submitHandler}
