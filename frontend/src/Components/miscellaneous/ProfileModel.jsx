@@ -47,7 +47,7 @@ const ProfileModel = ({ children }) => {
             justifyContent="space-between"
           >
             <div className="py-2 flex items-center justify-center text-7xl">
-              <AvatarImage userId={user._id} name={user.name} width={40} height={40} />
+              <AvatarImage userId={user._id} name={user.name} width={8} height={8} />
             </div>
             <Text
               fontSize={{ base: "18px", md: "20px" }}
